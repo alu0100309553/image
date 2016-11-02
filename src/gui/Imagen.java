@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,12 +19,39 @@ public class Imagen {
 	private int [] hgAC = new int [256];
 	private int [] hbAC = new int [256];
 	private int [] hyAC = new int [256];
-	private double brillo = 0;
-	private double contraste = 0;
+	private int brillo = 0;
+	private int contraste = 0;
 	private double entropia = 0;
 	private int min;
 	private int max;
 
+	
+	Imagen(Imagen origen, int [] transformacion){
+	  hr = origen.getHistData().get(0);
+	  hg = origen.getHistData().get(1);
+	  hb = origen.getHistData().get(2);
+	  for (int i = 0; i < origen.sizeX(); i++){
+	    ArrayList <int[]> aux = new ArrayList <int[]>();
+	    for (int j = 0; j < origen.sizeY(); j++){
+	      int valor = transformacion [origen.getData(i, j)[3]];
+	      int r = origen.getData(i, j)[0];
+        int g = origen.getData(i, j)[1];
+        int b = origen.getData(i, j)[2];
+        int [] rgb = {r, g, b, valor};
+        hy[valor]++;
+        aux.add(rgb);
+	    }
+	    data.add(aux);
+	  }
+	  acHist();
+    brillo();
+    contraste();
+    entropia();
+    min();
+    max();
+    new ImageWindow(this);
+	}
+	
 	Imagen(Imagen origen, int xi, int yi, int xf, int yf){
 		for (int i = xi; i <= xf; i++){
 			ArrayList <int[]> aux = new ArrayList <int[]>();
@@ -112,7 +138,7 @@ public class Imagen {
 		for (int i = 0; i < 256; i++){
 			acumulador += hy[i]*i; 
 		}
-		brillo = (double)acumulador/(double)(sizeX()*sizeY());
+		brillo = acumulador/(sizeX()*sizeY());
 
 	}
 	private void contraste (){
@@ -120,12 +146,12 @@ public class Imagen {
 		for (int i = 0; i < 256; i++){
 			acumulador += (double) hy[i]*Math.pow(((double)i-brillo),2);
 		}
-		contraste = Math.sqrt(acumulador/(double)(sizeX()*sizeY()));
+		contraste = (int)Math.sqrt(acumulador/(sizeX()*sizeY()));
 	}
-	public double getBrillo (){
+	public int getBrillo (){
 		return brillo;
 	}
-	public double getContraste (){
+	public int getContraste (){
 		return contraste;
 	}
 	private void min(){

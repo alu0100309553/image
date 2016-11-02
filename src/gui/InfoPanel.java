@@ -69,8 +69,8 @@ public class InfoPanel extends JPanel {
 		this.add(dim);
 		DecimalFormat formatter = new DecimalFormat("#.##", DecimalFormatSymbols.getInstance( Locale.FRANCE ));
 		formatter.setRoundingMode( RoundingMode.DOWN );
-		brillo.setText("Brillo: " + formatter.format(data.getBrillo()));
-		contraste.setText("Contraste: " + formatter.format(data.getContraste()));
+		brillo.setText("Brillo: " + data.getBrillo());
+		contraste.setText("Contraste: " + data.getContraste());
 		this.add(brillo);
 		this.add(contraste);
 		rango.setText("Rango: [" + data.getMin() + "," + data.getMax() +"]");

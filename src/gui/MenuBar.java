@@ -6,11 +6,11 @@ import javax.swing.JMenuBar;
 public class MenuBar extends JMenuBar {
   private MenuArchivo archivo;
   private MenuInfo inf;
-  private JMenu lineales;
+  private MenuLineales lineales;
   MenuBar (){
     archivo = new MenuArchivo();
     inf = new MenuInfo();
-    lineales = new JMenu ("Op Lineales");
+    lineales = new MenuLineales ();
     add(archivo);
     add(lineales);
     add(inf);

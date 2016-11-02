@@ -4,13 +4,16 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 public class MenuBar extends JMenuBar {
-  private MenuArchivo Archivo;
-  private JMenu Lineales;
+  private MenuArchivo archivo;
+  private MenuInfo inf;
+  private JMenu lineales;
   MenuBar (){
-    Archivo = new MenuArchivo();
-    Lineales = new JMenu ("Op Lineales");
-    add(Archivo);
-    add(Lineales);
+    archivo = new MenuArchivo();
+    inf = new MenuInfo();
+    lineales = new JMenu ("Op Lineales");
+    add(archivo);
+    add(lineales);
+    add(inf);
   }
 
 }

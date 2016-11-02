@@ -28,20 +28,18 @@ public class MenuArchivo extends JMenu {
       JFileChooser chooser = new JFileChooser();
       FileNameExtensionFilter bmp = new FileNameExtensionFilter(
           "Imágenes *.bmp ", "bmp");
-      FileNameExtensionFilter tiff = new FileNameExtensionFilter(
-          "Imágenes *.tiff ", "tiff");
+      FileNameExtensionFilter tif = new FileNameExtensionFilter(
+          "Imágenes *.tif ", "tif");
       FileNameExtensionFilter png = new FileNameExtensionFilter(
           "Imágenes *.png ", "png");
       chooser.setFileFilter(bmp);
-      chooser.setFileFilter(tiff);
+      chooser.setFileFilter(tif);
       chooser.setFileFilter(png);
       
       if (e.getSource() == abrir){            
         int returnVal = chooser.showOpenDialog(getParent());
         if(returnVal == JFileChooser.APPROVE_OPTION) {
-          //TODO generar matriz e imagen a partir del archivo
-           System.out.println("You chose to open this file: " +
-                chooser.getSelectedFile().getName() + chooser.getSelectedFile().getAbsolutePath() );
+        	new Imagen(chooser.getSelectedFile().getAbsolutePath());
         } else if (returnVal == JFileChooser.ERROR_OPTION ){
           //TODO gestionara error al abrir archivo
           
@@ -50,7 +48,7 @@ public class MenuArchivo extends JMenu {
       } else if (e.getSource() == guardar ){
         int returnVal = chooser.showSaveDialog(getParent());
             System.out.println(chooser.getSelectedFile().getAbsolutePath()
-                + chooser.getFileFilter().getExtensions()[0]);
+                + chooser.getFileFilter());
         
       }
       

@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 public class GUI extends JFrame {
   protected JFrame frame = new JFrame();
   private MenuBar menu = new MenuBar();
+  private static Imagen activa;
 
   GUI() {
 
@@ -18,9 +19,14 @@ public class GUI extends JFrame {
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     frame.setSize(screenSize);
     frame.setJMenuBar(menu);
-    frame.add(new InfoPanel(), BorderLayout.SOUTH);
     frame.setVisible(true);
 
   }
+  public static void setActiva (Imagen img){
+	  activa = img;
+  }
 
+  public static Imagen getActiva (){
+	  return activa;
+  }
 }

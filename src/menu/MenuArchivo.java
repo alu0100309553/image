@@ -1,4 +1,4 @@
-package gui;
+package menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,6 +7,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import Imagen.Imagen;
 
 public class MenuArchivo extends JMenu {
   private JMenuItem abrir = new JMenuItem("Abrir");

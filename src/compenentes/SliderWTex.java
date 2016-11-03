@@ -12,7 +12,7 @@
  * @version 1.0.0 02/05/2016
  **/
 
-package gui;
+package compenentes;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -50,7 +50,7 @@ public class SliderWTex extends JPanel {
   }
 
   //Class Constructor method
-  SliderWTex(String name, int max, int min, int value) {
+  public SliderWTex(String name, int max, int min, int value) {
     text = new JTextField();
     text.addActionListener(new MyActionListener());
     text.setPreferredSize(textDim);

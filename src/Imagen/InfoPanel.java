@@ -1,4 +1,4 @@
-package gui;
+package Imagen;
 
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.ArrayList;
 import java.util.Locale;
 
 import javax.swing.ButtonGroup;
@@ -105,7 +104,4 @@ public class InfoPanel extends JPanel {
 
 		}
 	}
-
-
-
 }

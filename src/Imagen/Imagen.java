@@ -1,4 +1,4 @@
-package gui;
+package Imagen;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -26,7 +26,7 @@ public class Imagen {
 	private int max;
 
 	
-	Imagen(Imagen origen, int [] transformacion){
+	public Imagen(Imagen origen, int [] transformacion){
 	  hr = origen.getHistData().get(0);
 	  hg = origen.getHistData().get(1);
 	  hb = origen.getHistData().get(2);
@@ -52,7 +52,7 @@ public class Imagen {
     new ImageWindow(this);
 	}
 	
-	Imagen(Imagen origen, int xi, int yi, int xf, int yf){
+	public Imagen(Imagen origen, int xi, int yi, int xf, int yf){
 		for (int i = xi; i <= xf; i++){
 			ArrayList <int[]> aux = new ArrayList <int[]>();
 			for (int j = yi; j <= yf; j++){
@@ -73,7 +73,7 @@ public class Imagen {
 		new ImageWindow(this);
 	}
 
-	Imagen(String path){
+	public Imagen(String path){
 		try {
 			image = ImageIO.read (new File(path));
 

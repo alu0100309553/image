@@ -6,12 +6,15 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
+import Imagen.Imagen;
+import menu.MenuBar;
+
 public class GUI extends JFrame {
   protected JFrame frame = new JFrame();
   private MenuBar menu = new MenuBar();
   private static Imagen activa;
 
-  GUI() {
+  public GUI() {
 
     frame.setLayout(new BorderLayout());
     frame.setTitle("Image");

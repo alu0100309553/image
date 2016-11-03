@@ -1,10 +1,15 @@
-package gui;
+package menu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+
+import Imagen.Imagen;
+import gui.GUI;
+import histograma.HistWindow;
+import histograma.HistWindowAC;
 
 public class MenuInfo extends JMenu{
 	private JMenuItem hist = new JMenuItem("Histograma");

@@ -1,4 +1,4 @@
-package gui;
+package brillo;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -8,12 +8,16 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import Imagen.Imagen;
+import compenentes.SliderWTex;
+
 public class BrilloWindow extends JFrame {
 	private SliderWTex brillo;
 	private SliderWTex contraste;
 	private JButton aplicar;
 	private Imagen origen;
-	BrilloWindow (Imagen origen){
+	
+	public BrilloWindow (Imagen origen){
 	  this.origen = origen;
 		Dimension dim = new Dimension(500, 100);
 		this.setSize(dim);

@@ -1,4 +1,4 @@
-package gui;
+package histograma;
 
 import java.awt.Color;
 import java.awt.Graphics;

@@ -34,16 +34,16 @@ public class MenuArchivo extends JMenu {
           "Imágenes *.tif ", "tif");
       FileNameExtensionFilter png = new FileNameExtensionFilter(
           "Imágenes *.png ", "png");
-      chooser.setFileFilter(bmp);
-      chooser.setFileFilter(tif);
       chooser.setFileFilter(png);
+      chooser.setFileFilter(tif);
+      chooser.setFileFilter(bmp);
       
       if (e.getSource() == abrir){            
         int returnVal = chooser.showOpenDialog(getParent());
         if(returnVal == JFileChooser.APPROVE_OPTION) {
         	new Imagen(chooser.getSelectedFile().getAbsolutePath());
         } else if (returnVal == JFileChooser.ERROR_OPTION ){
-          //TODO gestionara error al abrir archivo
+          //TODO gestionar error al abrir archivo
           
         } 
         

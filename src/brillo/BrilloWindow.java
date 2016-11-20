@@ -51,7 +51,7 @@ public class BrilloWindow extends JFrame {
           } else if (valor <0){
             valor = 0;
           } 
-          aux [i] = valor;
+          aux[i] = valor;
         }
         new Imagen (origen, aux);
       }

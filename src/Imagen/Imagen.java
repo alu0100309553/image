@@ -25,33 +25,33 @@ public class Imagen {
 	private int min;
 	private int max;
 
-	
+
 	public Imagen(Imagen origen, int [] transformacion){
-	  hr = origen.getHistData().get(0);
-	  hg = origen.getHistData().get(1);
-	  hb = origen.getHistData().get(2);
-	  for (int i = 0; i < origen.sizeX(); i++){
-	    ArrayList <int[]> aux = new ArrayList <int[]>();
-	    for (int j = 0; j < origen.sizeY(); j++){
-	      int valor = transformacion [origen.getData(i, j)[3]];
-	      int r = origen.getData(i, j)[0];
-        int g = origen.getData(i, j)[1];
-        int b = origen.getData(i, j)[2];
-        int [] rgb = {r, g, b, valor};
-        hy[valor]++;
-        aux.add(rgb);
-	    }
-	    data.add(aux);
-	  }
-	  acHist();
-    brillo();
-    contraste();
-    entropia();
-    min();
-    max();
-    new ImageWindow(this);
+		hr = origen.getHistData().get(0);
+		hg = origen.getHistData().get(1);
+		hb = origen.getHistData().get(2);
+		for (int i = 0; i < origen.sizeX(); i++){
+			ArrayList <int[]> aux = new ArrayList <int[]>();
+			for (int j = 0; j < origen.sizeY(); j++){
+				int valor = transformacion [origen.getData(i, j)[3]];
+				int r = origen.getData(i, j)[0];
+				int g = origen.getData(i, j)[1];
+				int b = origen.getData(i, j)[2];
+				int [] rgb = {r, g, b, valor};
+				hy[valor]++;
+				aux.add(rgb);
+			}
+			data.add(aux);
+		}
+		acHist();
+		brillo();
+		contraste();
+		entropia();
+		min();
+		max();
+		new ImageWindow(this);
 	}
-	
+
 	public Imagen(Imagen origen, int xi, int yi, int xf, int yf){
 		for (int i = xi; i <= xf; i++){
 			ArrayList <int[]> aux = new ArrayList <int[]>();

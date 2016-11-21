@@ -38,7 +38,6 @@ public class ImageWindow extends JFrame {
 
 		@Override
 		public void windowClosing(WindowEvent e) {
-			System.out.println("Alert");
 			// TODO Crear dialogo para guardar o que hacer
 			// TODO Auto-generated method stub
 			

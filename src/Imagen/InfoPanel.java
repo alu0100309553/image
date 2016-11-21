@@ -34,6 +34,9 @@ public class InfoPanel extends JPanel {
 	private ButtonGroup mode = new ButtonGroup();
 	private JRadioButton rgb = new JRadioButton("rgb");
 	private JRadioButton gris = new JRadioButton("y");
+	private ButtonGroup puntero = new ButtonGroup();
+	private JRadioButton roi = new JRadioButton("ROI");
+	private JRadioButton perfil = new JRadioButton("Perfil");
 
 	InfoPanel (Imagen data){
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -77,6 +80,12 @@ public class InfoPanel extends JPanel {
 		this.data = data;
 		entropia.setText("Entropia: " + formatter.format(data.getEntropia()));
 		this.add(entropia);
+		roi.addActionListener(new MyRadioListener());
+		perfil.addActionListener(new MyRadioListener());
+		puntero.add(roi);
+		puntero.add(perfil);
+		this.add(roi);
+		this.add(perfil);
 	}
 
 	public void setData(int x, int y){
@@ -96,11 +105,19 @@ public class InfoPanel extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==rgb){
 				image.setMode(true);
+				image.repaint();
 			}
 			else if (e.getSource()==gris){
 				image.setMode(false);
+				image.repaint();
 			}
-			image.repaint();
+			else if (e.getSource() == roi){
+				image.roi = true;
+			}
+			else if (e.getSource() == perfil){
+				image.roi = false;
+			}
+
 
 		}
 	}

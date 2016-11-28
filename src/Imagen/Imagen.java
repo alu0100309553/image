@@ -52,6 +52,34 @@ public class Imagen {
 		new ImageWindow(this);
 	}
 
+	public Imagen(Imagen origen, int [] transformacion, boolean pintar){
+		hr = origen.getHistData().get(0);
+		hg = origen.getHistData().get(1);
+		hb = origen.getHistData().get(2);
+		for (int i = 0; i < origen.sizeX(); i++){
+			ArrayList <int[]> aux = new ArrayList <int[]>();
+			for (int j = 0; j < origen.sizeY(); j++){
+				int valor = transformacion [origen.getData(i, j)[3]];
+				int r = origen.getData(i, j)[0];
+				int g = origen.getData(i, j)[1];
+				int b = origen.getData(i, j)[2];
+				int [] rgb = {r, g, b, valor};
+				hy[valor]++;
+				aux.add(rgb);
+			}
+			data.add(aux);
+		}
+		acHist();
+		brillo();
+		contraste();
+		entropia();
+		min();
+		max();
+		if (pintar){
+			new ImageWindow(this);
+		}
+	}
+
 	public Imagen(Imagen origen, int xi, int yi, int xf, int yf){
 		for (int i = xi; i <= xf; i++){
 			ArrayList <int[]> aux = new ArrayList <int[]>();
@@ -142,6 +170,9 @@ public class Imagen {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public ArrayList<ArrayList<int[]>> getData(){
+		return data;
 	}
 	public int[] getData (int x, int y){
 		return data.get(x).get(y);

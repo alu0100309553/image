@@ -4,8 +4,15 @@ import Imagen.Imagen;
 
 public class Ecualizacion {
 	private Imagen original;
+	private boolean pintar = true;
+	private Imagen resultado;
 	public Ecualizacion (Imagen origen){
 		original = origen;
+		ecualizar();
+	}
+	public Ecualizacion (Imagen origen, boolean pintar){
+		original = origen;
+		this.pintar = pintar;
 		ecualizar();
 	}
 	private void ecualizar () {
@@ -17,7 +24,10 @@ public class Ecualizacion {
 			double c0 = (double) origenAC [i];
 			aux [i] = Math.max(0,((int)((c0*m)))-1);
 		}
-		new Imagen (original, aux);
+		resultado = new Imagen (original, aux, pintar);
+	}
+	public Imagen getResultado () {
+		return resultado;
 	}
 
 }

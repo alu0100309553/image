@@ -5,11 +5,20 @@ import Imagen.Imagen;
 public class Especificacion {
   private Imagen original;
   private Imagen referencia;
+  private boolean pintar = true;
+  private Imagen resultado;
   public Especificacion (Imagen origen, Imagen ref){
     original = origen;
     referencia = ref;
     especificar();
   }
+  
+  public Especificacion (Imagen origen, Imagen ref, boolean pintar){
+	    original = origen;
+	    referencia = ref;
+	    this.pintar = pintar;
+	    especificar();
+	  }
   private void especificar(){
     int [] aux = new int [256];
     double [] origenP = normalizar (original);
@@ -25,7 +34,11 @@ public class Especificacion {
         aux [i] = j-1;
       }
     }
-    new Imagen (original, aux);
+    resultado = new Imagen (original, aux, pintar);
+  }
+  
+  public Imagen getResultado () {
+	  return resultado;
   }
   private double [] normalizar (Imagen img){
     double [] aux = new double [256];

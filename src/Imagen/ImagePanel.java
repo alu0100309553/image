@@ -37,7 +37,6 @@ public class ImagePanel extends JPanel {
 		dibujo.addMouseMotionListener(new MyMouseListener());
 		dibujo.addMouseListener(new MyClickListener());
 		dibujo.setOpaque(false);
-		//dibujo.setBackground(Color.RED);
 		this.add(dibujo);
 	}
 
@@ -53,10 +52,6 @@ public class ImagePanel extends JPanel {
 				}
 				g.drawLine(i,j,i,j);
 			}
-		}
-		if (roisel){
-			g.setColor(Color.BLACK);
-			g.drawRect(xi, yi, xi-xt, yi-yt);
 		}
 	}
 	private void info(int x, int y){

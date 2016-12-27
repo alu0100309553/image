@@ -124,8 +124,8 @@ public class Tramos extends JFrame {
 				tramosdef.clear();
 				for (int i = 0; i <= tramos; i++){
 					tramosdef.add(new Puntos());
-					setTramosDef();
 				}
+				setTramosDef();
 			} else if (e.getSource()== aplicar){
 				tablaConversion();
 			}

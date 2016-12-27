@@ -43,6 +43,14 @@ public class Perfil extends JPanel {
 			g.setColor(Color.BLUE);
 			g.fillRect(i, 256-valores[i][2] , 1,1);
 		}
+		for (int i = 3; i < valores.length-3; i++){
+			g.setColor(Color.YELLOW);
+			g.drawLine(i, 256, i, 256-((valores[i-3][3]+valores[i-2][3]+valores[i-1][3]+valores[i][3]+valores[i+1][3]+valores[i+2][3]+valores[i+3][3])/7));
+		}
+		for (int i = 1; i < valores.length; i++){
+			g.setColor(Color.PINK);
+			g.drawLine(i, 256, i, 256-(valores[i-1][3]-valores[i][3]));
+		}
 
 	}
 

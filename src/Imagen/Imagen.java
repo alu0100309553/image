@@ -25,6 +25,28 @@ public class Imagen {
 	private int min;
 	private int max;
 
+	public Imagen(ArrayList <ArrayList <int[]>> orgData, boolean print){
+		data = orgData;
+		for (ArrayList<int []> line: data){
+			for (int [] pixel : line){
+				hr[pixel[0]]++;
+				hg[pixel[1]]++;
+				hb[pixel[2]]++;
+				hy[pixel[3]]++;
+			}
+		}
+		acHist();
+		brillo();
+		contraste();
+		entropia();
+		min();
+		max();
+		if (print){
+			new ImageWindow(this);
+		}
+
+	}
+
 
 	public Imagen(Imagen origen, int [] transformacion){
 		hr = origen.getHistData().get(0);

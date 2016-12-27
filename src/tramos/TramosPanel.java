@@ -32,14 +32,9 @@ public class TramosPanel extends JPanel {
 		}
 	}
 
-
 	public void modificar (ArrayList <Puntos> tramosdef){
 		this.tramosdef = tramosdef;
 		this.repaint();
-		System.out.println("entro");
-
-
-
 	}
 
 }

@@ -21,7 +21,7 @@ public class Digitalizar extends JFrame {
 	private JLabel bits = new JLabel ("Bits de Muestreo");
 	private JTextField bitsIn = new JTextField (2);
 	private Imagen original;
-	private ArrayList<ArrayList<int[]>> newdata = new ArrayList<ArrayList<int[]>>() ;
+	private ArrayList<ArrayList<int[]>> newdata;
 	private ArrayList<ArrayList<int[]>> orgdata;
 	public Digitalizar (Imagen origen){
 		original = origen;
@@ -39,12 +39,13 @@ public class Digitalizar extends JFrame {
 	}
 	private void digit (){
 		orgdata = original.getData();
+		newdata = (ArrayList<ArrayList<int[]>>) original.getData().clone();
+		    //original.getData();
 		int tam = Integer.parseInt(muestreoIn.getText());
 		int b = Integer.parseInt(bitsIn.getText());
 		int n = (int)Math.pow(2, b)-1;
 		int salto = 255/n;
 		for (int i = 0; i+tam < original.sizeX(); i+= tam ){
-			ArrayList<int[]> line = new ArrayList<int[]>();
 			for (int j = 0; j+tam < original.sizeY(); j+= tam){
 				int auxR = 0;
 				int auxG = 0;
@@ -70,9 +71,12 @@ public class Digitalizar extends JFrame {
 						aux[m] = (aux[m]/salto)*salto;
 					}
 				}
-				line.add(aux);
+				for(int k = 0; k < tam; k++){
+          for(int l = 0; l < tam; l++){
+            newdata.get(i+k).set(j+l, aux);
+          }
+        }
 			}
-			newdata.add(line);
 		}
 		new Imagen (newdata, true);
 	} 

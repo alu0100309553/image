@@ -16,6 +16,7 @@ import espejo.EspejoHor;
 import espejo.EspejoVert;
 import espejo.Traspuesta;
 import gui.GUI;
+import rotacion.RotDirecta;
 import rotacion.RotEntera;
 
 public class MenuOpGeometricas extends JMenu {
@@ -24,7 +25,9 @@ public class MenuOpGeometricas extends JMenu {
 	private JMenuItem espejoVert = new JMenuItem("Espejo Vertical");
 	private JMenuItem espejoHor = new JMenuItem("Espejo Horizontal");
 	private JMenuItem traspuesta = new JMenuItem("Traspuesta");
-  private JMenuItem escala = new JMenuItem("Escala");
+	private JMenuItem escala = new JMenuItem("Escala");
+	private JMenuItem rotDir = new JMenuItem("Rotación Directa");
+
 
 	MenuOpGeometricas (){
 		rotEnt.addActionListener(new MenuListener());
@@ -32,7 +35,8 @@ public class MenuOpGeometricas extends JMenu {
 		espejoVert.addActionListener(new MenuListener());
 		espejoHor.addActionListener(new MenuListener());
 		traspuesta.addActionListener(new MenuListener());
-    escala.addActionListener(new MenuListener());
+		escala.addActionListener(new MenuListener());
+		rotDir.addActionListener(new MenuListener());
 		setText("Operaciones Geométricas");
 		add(rotEnt);
 		add(rotacion);
@@ -40,6 +44,7 @@ public class MenuOpGeometricas extends JMenu {
 		add(espejoHor);
 		add(traspuesta);
 		add(escala);
+		add(rotDir);
 	}
 
 	protected class MenuListener implements ActionListener {
@@ -50,16 +55,18 @@ public class MenuOpGeometricas extends JMenu {
 			if (e.getSource() == rotEnt){            
 				new RotEntera(GUI.getActiva());
 			} else if (e.getSource() == rotacion){
-			  System.out.println("Rotación normal");
+				System.out.println("Rotación normal");
 			} else if (e.getSource() == espejoVert){
-			  new EspejoVert(GUI.getActiva(), true);			  
+				new EspejoVert(GUI.getActiva(), true);			  
 			} else if (e.getSource() == espejoHor){
-        new EspejoHor(GUI.getActiva(), true);        
-      } else if (e.getSource() == traspuesta){
-        new Traspuesta (GUI.getActiva(), true);
-      } else if (e.getSource() == escala){
-        new Escala(GUI.getActiva());
-      }
+				new EspejoHor(GUI.getActiva(), true);        
+			} else if (e.getSource() == traspuesta){
+				new Traspuesta (GUI.getActiva(), true);
+			} else if (e.getSource() == escala){
+				new Escala(GUI.getActiva());
+			} else if (e.getSource() == rotDir){
+				new RotDirecta(GUI.getActiva());
+			}
 
 		}
 

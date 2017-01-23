@@ -53,8 +53,8 @@ public class RotDirecta extends JFrame {
     pack();
   }
   
-  private Point rotacion (Point org, double ang ){
-	  return new Point((int)((org.x * Math.cos(ang))+(org.y * -Math.sin(ang))), (int)((org.x * Math.sin(ang))+(org.y * Math.cos(ang))));
+  private Point2D.Double rotacion (Point org, double ang ){
+	  return new Point2D.Double(((org.x * Math.cos(ang))+(org.y * -Math.sin(ang))),((org.x * Math.sin(ang))+(org.y * Math.cos(ang))));
   }
   private void rotar () {
 	  //Calculando el cuadrado que contiene a la imágen rotada.
@@ -64,24 +64,23 @@ public class RotDirecta extends JFrame {
 	  int minY = Integer.MAX_VALUE;
 	  for (int i = 0; i < original.sizeX(); i+= original.sizeX()-1){
 		  for (int j = 0; j < original.sizeY(); j += original.sizeY()-1){
-			  Point punto = rotacion (new Point (i,j), Double.parseDouble(angulo.getText()));
+			  Point2D.Double punto = rotacion (new Point (i,j), Double.parseDouble(angulo.getText()));
 			  if (punto.x > maxX){
-				  maxX = punto.x;
+				  maxX = (int) punto.x;
 			  }
 			  if (punto.x < minX){
-				  minX = punto.x;
+				  minX = (int) punto.x;
 			  }
 			  if (punto.y > maxY){
-				  maxX = punto.y;
+				  maxX = (int) punto.y;
 			  }
 			  if (punto.y < minY){
-				  minX = punto.y;
+				  minX = (int) punto.y;
 			  }
 		  }
 	  }
 	  int sizeX = maxX-minX;
 	  int sizeY = maxY-minY;
-	  new Point2D.Double(2.265635325, 3.26546523);
 	  if (interpolar.isSelected()){
           bilineal();
         } else {

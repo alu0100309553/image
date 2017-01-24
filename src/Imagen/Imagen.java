@@ -24,6 +24,33 @@ public class Imagen {
 	private double entropia = 0;
 	private int min;
 	private int max;
+	
+	
+	public Imagen(ArrayList <ArrayList <int[]>> orgData, boolean print, Correccion correccion){
+		data = orgData;
+		for (ArrayList<int []> line: data){
+			for (int [] pixel : line){
+				hr[pixel[0]]++;
+				hg[pixel[1]]++;
+				hb[pixel[2]]++;
+				hy[pixel[3]]++;
+			}
+		}
+		hr[correccion.vR] -= correccion.cR;
+		hg[correccion.vG] -= correccion.cG;
+		hb[correccion.vB] -= correccion.cB;
+		hy[correccion.vY] -= correccion.cY;
+		acHist();
+		brillo();
+		contraste();
+		entropia();
+		min();
+		max();
+		if (print){
+			new ImageWindow(this);
+		}
+
+	}
 
 	public Imagen(ArrayList <ArrayList <int[]>> orgData, boolean print){
 		data = orgData;

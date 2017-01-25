@@ -31,10 +31,15 @@ public class RotInversa extends JFrame {
 	private JLabel textoAngulo = new JLabel ("Ángulo de rotación");
 	private ArrayList<ArrayList<int[]>> newdata;
 	private ArrayList<ArrayList<int[]>> orgdata;
+	private int maxX = Integer.MIN_VALUE;
+	private int maxY = Integer.MIN_VALUE;
+	private int minX = Integer.MAX_VALUE;
+	private int minY = Integer.MAX_VALUE;
+	
 	public RotInversa (Imagen original){
 		this.original = original;    
 		setLayout(new GridLayout (3,1));
-		setTitle("Rotación Directa");
+		setTitle("Rotación Inversa");
 		aplicar.addActionListener(new myActionListener());
 		angPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Ángulo"));
 		angPanel.setLayout(new GridLayout(1,2));
@@ -53,20 +58,19 @@ public class RotInversa extends JFrame {
 		setVisible(true);
 		pack();
 	}
-
+	private Point2D.Double rotacionDouble (Point org, double ang ){
+		return new Point2D.Double(((org.x * Math.cos(ang))+(org.y * -Math.sin(ang))),((org.x * Math.sin(ang))+(org.y * Math.cos(ang))));
+	}
+	
 	private Point rotacion (Point org, double ang ){
 		return new Point((int)((org.x * Math.cos(ang))+(org.y * -Math.sin(ang))),(int)((org.x * Math.sin(ang))+(org.y * Math.cos(ang))));
 	}
 	private void rotar () {
-		//orgdata = original.getData();
+		orgdata = original.getData();
 		newdata = new ArrayList<ArrayList<int[]>> ();
 		//Calculando el cuadrado que contiene a la imágen rotada.
-		int maxX = Integer.MIN_VALUE;
-		int maxY = Integer.MIN_VALUE;
-		int minX = Integer.MAX_VALUE;
-		int minY = Integer.MAX_VALUE;
-		for (int i = 0; i < original.sizeX(); i+= original.sizeX()-1){
-			for (int j = 0; j < original.sizeY(); j += original.sizeY()-1){
+		for (int i = 0; i <= original.sizeX(); i+= original.sizeX()){
+			for (int j = 0; j <= original.sizeY(); j += original.sizeY()){
 				Point punto = rotacion (new Point (i,j), Math.toRadians(Double.parseDouble(angulo.getText())));
 				if (punto.x > maxX){
 					maxX = punto.x;
@@ -89,30 +93,74 @@ public class RotInversa extends JFrame {
 		} else {
 			masProximo(sizeX, sizeY);
 		}
-		
-		
 	}
 	
 	private void biLineal(int sizeX, int sizeY){
+		Correccion correccion = new Correccion();
+		int cantidad = 0;
 		for (int i = 0; i < sizeX; i++){
 			ArrayList<int[]> line = new ArrayList<int[]>();
 			for (int j = 0; j < sizeY; j++){
-				int[] aux = {0,0,0,0};
-				line.add(aux);
+				Point2D.Double punto = rotacionDouble (new Point (i+minX,j+minY), Math.toRadians(Double.parseDouble(angulo.getText())*-1));
+				if (punto.x  >= 0 && punto.y >=0 && punto.x  < original.sizeX()-1 && punto.y < original.sizeY()-1 ){
+					int [] values = new int [4];
+			        int intX = (int) punto.x;
+			        int intY = (int) punto.y;
+			        int [] a = orgdata.get(intX).get(intY+1);
+			        int [] b = orgdata.get(intX+1).get(intY+1);
+			        int [] c = orgdata.get(intX).get(intY);
+			        int [] d = orgdata.get(intX+1).get(intY);
+			        double q = punto.y - intY;
+			        double p = punto.x - intX;
+			        for (int k = 0; k < 4; k++){
+			          values [k] = (int)(c[k]+((d[k]-c[k])*p) + ((a[k]-c[k])*q) + ((a[k]+c[k]-a[k]-d[k])*p*q));
+			        }
+			        line.add(values);
+				} else {
+					int[] aux = {0,0,0,0};
+					line.add(aux);
+					cantidad++;
+				}
 			}
 			newdata.add(line);
 		}
+		correccion.vR = 0;
+		correccion.vG = 0;
+		correccion.vB = 0;
+		correccion.vY = 0;
+		correccion.cR = cantidad;
+		correccion.cG = cantidad;
+		correccion.cB = cantidad;
+		correccion.cY = cantidad;
+		new Imagen (newdata, true, correccion);
 	}
 
 	private void masProximo(int sizeX, int sizeY){
+		Correccion correccion = new Correccion();
+		int cantidad = 0;
 		for (int i = 0; i < sizeX; i++){
 			ArrayList<int[]> line = new ArrayList<int[]>();
 			for (int j = 0; j < sizeY; j++){
-				int[] aux = {0,0,0,0};
-				line.add(aux);
+				Point punto = rotacion (new Point (i+minX,j+minY), Math.toRadians(Double.parseDouble(angulo.getText())*-1));
+				if (punto.x  >= 0 && punto.y >=0 && punto.x  < original.sizeX() && punto.y < original.sizeY() ){
+					line.add(orgdata.get(punto.x).get(punto.y));
+				} else {
+					int[] aux = {0,0,0,0};
+					line.add(aux);
+					cantidad++;
+				}
 			}
 			newdata.add(line);
 		}
+		correccion.vR = 0;
+		correccion.vG = 0;
+		correccion.vB = 0;
+		correccion.vY = 0;
+		correccion.cR = cantidad;
+		correccion.cG = cantidad;
+		correccion.cB = cantidad;
+		correccion.cY = cantidad;
+		new Imagen (newdata, true, correccion);
 	}
 	private class myActionListener implements ActionListener{
 

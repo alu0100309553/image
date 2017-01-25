@@ -13,6 +13,7 @@ public class GUI extends JFrame {
   protected JFrame frame = new JFrame();
   private MenuBar menu = new MenuBar();
   private static Imagen activa;
+  private static int contador = 1;
 
   public GUI() {
 
@@ -31,5 +32,13 @@ public class GUI extends JFrame {
 
   public static Imagen getActiva (){
 	  return activa;
+  }
+  
+  public static int getContador () {
+	  return contador;
+  }
+  
+  public static void addContador () {
+	  contador++;
   }
 }

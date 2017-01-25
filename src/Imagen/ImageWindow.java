@@ -19,6 +19,8 @@ public class ImageWindow extends JFrame {
 		setLayout(new BorderLayout());
 		Dimension dim = new Dimension(data.sizeX(), data.sizeY());
 		setSize(dim);
+		setTitle("Imagen " + GUI.getContador());
+		GUI.addContador();
 		info = new InfoPanel(data);
 		imgPanel = new ImagePanel(data, info);
 		info.setImage(imgPanel);

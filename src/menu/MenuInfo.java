@@ -14,15 +14,12 @@ import histograma.HistWindowAC;
 public class MenuInfo extends JMenu{
 	private JMenuItem hist = new JMenuItem("Histograma");
 	private JMenuItem histAc = new JMenuItem("Histograma Acumulativo");
-	private JMenuItem entropia = new JMenuItem("Entropia");
 	MenuInfo(){
 		setText("Información");
 		hist.addActionListener(new MenuListener());
 		histAc.addActionListener(new MenuListener());
-		entropia.addActionListener(new MenuListener());
 		add(hist);
 		add(histAc);
-		add(entropia);
 		
 	}
 	protected class MenuListener implements ActionListener {

@@ -6,6 +6,8 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -15,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneLayout;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import Imagen.Imagen;
 
@@ -40,6 +44,8 @@ public class Tramos extends JFrame {
 			ytf = new JTextField("0");
 			xtf.addActionListener(new Listener());
 			ytf.addActionListener(new Listener());
+			xtf.addFocusListener(new FocusList());
+			ytf.addFocusListener(new FocusList());
 			x = 0;
 			y = 0;
 		}
@@ -55,6 +61,26 @@ public class Tramos extends JFrame {
 				}
 			}
 		}
+		
+		private class FocusList implements FocusListener{
+
+			@Override
+			public void focusGained(FocusEvent e) {
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (e.getSource() == xtf){
+					x = Integer.parseInt(xtf.getText());
+					panel.modificar(tramosdef);
+				} else if (e.getSource() == ytf){
+					y = Integer.parseInt(ytf.getText());
+					panel.modificar(tramosdef);
+				}
+				
+			}
+		}
+		
 	}
 	public Tramos (Imagen origen) {
 		original = origen;

@@ -2,6 +2,7 @@ package menu;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -10,8 +11,10 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Imagen.Imagen;
@@ -26,6 +29,7 @@ public class MenuArchivo extends JMenu {
 		abrir.addActionListener(new MenuListener());
 		guardarbn.addActionListener(new MenuListener());
 		guardarcolor.addActionListener(new MenuListener());
+		acerca.addActionListener(new MenuListener());
 		setText("Archivo");
 		add(abrir);
 		add(guardarbn);
@@ -122,8 +126,20 @@ public class MenuArchivo extends JMenu {
 
 				} 
 
+			}else if (e.getSource() == acerca){
+				JFrame info = new JFrame("Acerca de:");
+				info.setLayout(new GridLayout(1,1));
+				JTextArea text = new JTextArea ("Image es un programa para el tratamiento de imágenes. "
+						+ "\nDesarrollado en la asignatura Visión por Computador "
+						+ "\nde 4º de Grado en Ingeniería Informática (Computación) "
+						+ "\nEscuela Técnica Superior de Ingeniería Informática. "
+						+ "\nUniversidad de La Laguna - 2017"
+						+ "\nDesarrollado por: Rubén Labrador Páez" );
+				info.add(text);
+				info.pack();
+				info.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				info.setVisible(true);
 			}
 		}
-
 	}
 }

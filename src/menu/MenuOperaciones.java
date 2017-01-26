@@ -11,18 +11,22 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import Imagen.Imagen;
 import diferencia.Diferencia;
 import digitalizar.Digitalizar;
+import filtros.Filtros;
 import gui.GUI;
 
 public class MenuOperaciones extends JMenu {
 	private JMenuItem diferencia = new JMenuItem("Diferencia");
 	private JMenuItem digitalizar = new JMenuItem("Digitalizar");
+	private JMenuItem filtro = new JMenuItem("Filtro");
 
 	MenuOperaciones (){
 		diferencia.addActionListener(new MenuListener());
 		digitalizar.addActionListener(new MenuListener());
+		filtro.addActionListener(new MenuListener());
 		setText("Operaciones");
 		add(diferencia);
 		add(digitalizar);
+		add(filtro);
 	}
 
 	protected class MenuListener implements ActionListener {
@@ -34,6 +38,8 @@ public class MenuOperaciones extends JMenu {
 				new Diferencia();
 			} else if (e.getSource() == digitalizar){
 				new Digitalizar(GUI.getActiva());
+			} else if (e.getSource() == filtro){
+				new Filtros(GUI.getActiva());
 			}
 
 		}

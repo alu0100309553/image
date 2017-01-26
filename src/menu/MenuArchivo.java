@@ -137,7 +137,7 @@ public class MenuArchivo extends JMenu {
 						+ "\nDesarrollado por: Rubén Labrador Páez" );
 				info.add(text);
 				info.pack();
-				info.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				//info.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				info.setVisible(true);
 			}
 		}

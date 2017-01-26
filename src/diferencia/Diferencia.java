@@ -148,7 +148,7 @@ public class Diferencia extends JFrame {
 				imagenA = ecuA.getResultado ();
 				Ecualizacion ecuB = new Ecualizacion (imagenB, false);
 				imagenB = ecuB.getResultado ();
-			} else if (e.getSource() == normalizar){
+			} else if (e.getSource() == igualar){
 				double nuevoBrillo = imagenA.getBrillo();
 				double nuevoContraste = imagenA.getContraste();
 				double a = nuevoContraste / (double)imagenB.getContraste();

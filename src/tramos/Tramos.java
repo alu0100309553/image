@@ -86,7 +86,7 @@ public class Tramos extends JFrame {
 		original = origen;
 		setLayout(new BorderLayout());
 		setTitle("Ajuste por tramos");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		setSize(screenSize);
 		setVisible(true);

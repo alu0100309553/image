@@ -99,13 +99,19 @@ public class Filtros extends JFrame {
       for (int j = 0; j < tamV; j++){
         Valor celda = new Valor();
         aux.add(celda);
-        defkernelPanel.add(celda.valorJT);
-
+       // defkernelPanel.add(celda.valorJT);
       }
       kernel.add(aux);
     }
+    
+    for (int i = 0; i < tamV; i++){
+      for (int j = 0; j < tamH; j++){
+        defkernelPanel.add(kernel.get(j).get(i).valorJT);
+      }
+    }
     defkernelPanel.revalidate();
     defkernelPanel.repaint();
+    
   }
 
   private void aplicar(){
@@ -149,9 +155,9 @@ public class Filtros extends JFrame {
   }
   
   private void convolucionar () {
-    for (int i = ((tamH-1)/2) ; i < original.sizeX()-1-((tamH-1)/2); i++){
+    for (int i = ((tamH-1)/2) ; i < original.sizeX()-((tamH-1)/2); i++){
       ArrayList<int[]> line = new ArrayList <int[]>();
-      for (int j = ((tamV-1)/2); j < original.sizeY()-1-((tamV-1)/2); j++){
+      for (int j = ((tamV-1)/2); j < original.sizeY()-((tamV-1)/2); j++){
         int auxR = 0, auxG = 0, auxB = 0, auxY = 0;
         for (int k = 0; k < tamH; k++){
           for (int l = 0; l < tamV; l++){

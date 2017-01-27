@@ -74,7 +74,7 @@ public class Filtros extends JFrame {
     original = origen;
     setLayout(new BorderLayout());
     setTitle("Filtros");
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     setSize(screenSize);
     setVisible(true);
